@@ -1,0 +1,42 @@
+    1  whoami
+    2  ls
+    3  getent passwd 1234
+    4  getent group students
+    5  sudo groupadd students
+    6  getent group students
+    7  sudo useradd -u 1234 -m -s /bin/bash -G students user1
+    8  getent passwd user1
+    9  getent group students
+   10  id user1
+   11  sudo getent shadow user1
+   12  sudo passwd user1
+   13  sudo chage -M 90 -W 7 user1
+   14  sudo chage -l user1
+   15  sudo getent shadow user1
+   16  sudo find / -xdev -type f -perm -4000 -exec ls -ld {} \; 2>/dev/null | tee ~/setuid_files.out
+   17  ls -l ~/setuid_files.out
+   18  su - user1
+   19  passwd
+   20  su - user1
+   21  sudo install -o root -g root -m 0755 /usr/bin/cat /home/user1/mycat
+   22  sudo chmod u+s /home/user1/mycat
+   23  ls -l /home/user1/mycat
+   24  sudo -u user1 cat /etc/shadow
+   25  sudo -u user1 /home/user1/mycat /etc/shadow
+   26  sudo ls -l /home/user1/mycat
+   27  sudo install -o root -g root -m 0755 /usr/bin/chown /home/user1/mychown
+   28  sudo setcap cap_chown=ep /home/user1/mychown
+   29  sudo getcap /home/user1/mychown
+   30  sudo -u user1 touch /home/user1/testfile
+   31  sudo -u user1 chown root /home/user1/testfile
+   32  sudo -u user1 /home/user1/mychown root /home/user1/testfile
+   33  sudo ls -l /home/user1/testfile
+   34  sudo getcap /home/user1/mychown > ~/getcap.out
+   35  command -v timedatectl date hwclock
+   36  sudo visudo
+   37  sudo -l -U user1
+   38  sudo -u user1 sudo timedatectl set-ntp false
+   39  sudo -u user1 sudo timedatectl set-time "2026-09-09 12:00:00"
+   40  timedatectl
+   41  history -a
+   42  history > ~/history.out
